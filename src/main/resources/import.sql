@@ -1,9 +1,15 @@
-create table Users(email varchar, password varchar, role varchar);
--- vanrossum
-insert into Users(email, password, role)
-values('guido@mail.com','$2a$10$1X8qnW89UrB9zrjRvSLf4.H4u/ZkAXvyWoJMdXGwTIlGA6
-t3vcquq','ADMIN');
--- gosling
-insert into Users(email, password, role)
+create table Users(email varchar, username varchar, password varchar, role varchar);
+
+-- admin
+insert into Users(email, username, password, role)
+values('guido@mail.com',
+		'admin',
+		'$2a$10$X.9iwQttgYHjZ/i75ZLlZe3HSYtKUB2s3pvKbpotONzP7GwD6wpoG',
+		'ADMIN');
+		
+-- cliente
+insert into Users(email, username, password, role)
 values('james@mail.com',
-'$2a$10$8bhmeA37YHbBaWpvFvSuC.3rtuZd.GV4fM63qSSoQ9SPSb4kelDze', 'CLIENT');
+		'client',
+		'$2a$10$Zk./Z5UIduVBUwwjQcRtYuYcDnrW7t.RXbXI5GM8Xs.RLQy2l/UAe',
+		'CLIENT');

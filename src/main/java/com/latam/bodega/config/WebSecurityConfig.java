@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	public static final String ROLE_ADMIN = "ADMIN";
+	public static final String ROLE_CLIENT = "CLIENT";
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -22,17 +25,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		// auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("miawmiaw")).roles("ADMIN");
-		// auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("miawmiaw")).roles("USER");
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/user/**")
-				.hasRole("CLIENT").antMatchers("/login").permitAll().anyRequest().authenticated().and().formLogin()
+		http.csrf().disable().authorizeRequests()
+				.antMatchers("**/user/**").hasRole(ROLE_CLIENT)
+				.antMatchers("**/admin/**").hasRole(ROLE_ADMIN)
+				.antMatchers("/login").permitAll()
+				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").successHandler(authenticationSuccessHandler).failureUrl("/login?error=true")
 				.usernameParameter("email").passwordParameter("password")
-				// .defaultSuccessUrl("/client")
 				.and().exceptionHandling().accessDeniedPage("/recurso-prohibido");
 	}
 

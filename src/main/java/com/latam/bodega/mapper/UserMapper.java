@@ -14,5 +14,8 @@ public interface UserMapper {
 	
 	@Select("SELECT * FROM Users WHERE role = #{role}")
 	Users findByRole(@Param("role") String role);
-
+	
+	@Select("SELECT * FROM Users WHERE username = #{username}")
+	Users findByUsername(@Param("username") String username);
+	
 }
