@@ -22,8 +22,8 @@ public class AuthServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserMapper userMapper;
 
-	@Autowired
-	private BCryptPasswordEncoder encoder;
+//	@Autowired
+//	private BCryptPasswordEncoder encoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

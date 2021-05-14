@@ -9,7 +9,10 @@ import com.latam.bodega.model.Users;
 @Mapper
 public interface UserMapper {
 
-	@Select("select * from Users where email = #{email}")
+	@Select("SELECT * FROM Users WHERE email = #{email}")
 	Users findByEmail(@Param("email") String email);
+	
+	@Select("SELECT * FROM Users WHERE role = #{role}")
+	Users findByRole(@Param("role") String role);
 
 }
