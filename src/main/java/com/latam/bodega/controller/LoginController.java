@@ -6,13 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-	
-	
 
-    @GetMapping("/login")
-    public ModelAndView login(){
-        return new ModelAndView("login");
-    }
-
+	@GetMapping("/login")
+	public ModelAndView login() {
+		return new ModelAndView("login");
+	}
 
 }

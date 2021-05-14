@@ -6,12 +6,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ErrorController {
-	
+
 	@GetMapping("/recurso-prohibido")
 	public ModelAndView recurso03() {
-		
+
 		return new ModelAndView("error/403");
-		
+
 	}
 
 }

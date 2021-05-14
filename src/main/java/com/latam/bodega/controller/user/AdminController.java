@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-	 @GetMapping("/admin")
-	    public ModelAndView home(HttpSession session) {
-	        ModelAndView modelAndView = new ModelAndView("admin/admin");
-	        return modelAndView;
+	@GetMapping("/admin")
+	public ModelAndView home(HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView("admin/admin");
+		return modelAndView;
 	}
 
 }

@@ -8,7 +8,7 @@ import com.latam.bodega.model.Users;
 
 @Mapper
 public interface UserMapper {
-	
+
 	@Select("select * from Users where email = #{email}")
 	Users findByEmail(@Param("email") String email);
 
