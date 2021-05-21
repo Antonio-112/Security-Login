@@ -19,13 +19,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			Authentication authentication) throws IOException, ServletException {
 
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-		roles.stream().forEach(str -> System.out.println(str));
 		if (roles.contains("ADMIN")) {
-			System.out.println("Redireccionando a /admin");
 			httpServletResponse.sendRedirect("/admin");
-		} else {
-			System.out.println("Redireccionando a /client");
+		}else if(roles.contains("CLIENT")) {
 			httpServletResponse.sendRedirect("/client");
+		}else {
+			System.err.println("Who r u?");
 		}
 
 	}
