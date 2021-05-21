@@ -17,7 +17,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	public static final String ROLE_ADMIN = "ADMIN";
 	public static final String ROLE_CLIENT = "CLIENT";
-	
+
+	private static final String[] PUBLIC_MATCHERS = { "/css/**", "/js/**", "/webjars/**", "/static/**", "/login" };
+	private static final String[] CLIENT_MATCHERS = { "**/user/**" };
+	private static final String[] ADMIN_MATCHERS = { "**/admin/**" };
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -29,14 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("**/user/**").hasRole(ROLE_CLIENT)
-				.antMatchers("**/admin/**").hasRole(ROLE_ADMIN)
-				.antMatchers("/login").permitAll()
-				.anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").successHandler(authenticationSuccessHandler).failureUrl("/login?error=true")
-				.usernameParameter("email").passwordParameter("password")
-				.and().exceptionHandling().accessDeniedPage("/recurso-prohibido");
+		http.csrf().disable().authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().antMatchers(CLIENT_MATCHERS)
+				.hasRole(ROLE_CLIENT).antMatchers(ADMIN_MATCHERS).hasRole(ROLE_ADMIN).anyRequest().authenticated().and()
+				.formLogin().loginPage("/login").successHandler(authenticationSuccessHandler)
+				.failureUrl("/login?error=true").usernameParameter("email").passwordParameter("password").and()
+				.exceptionHandling().accessDeniedPage("/recurso-prohibido");
 	}
 
 	private AuthenticationSuccessHandler authenticationSuccessHandler;
