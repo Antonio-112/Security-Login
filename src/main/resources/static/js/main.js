@@ -26,7 +26,7 @@ function validarFormulario(evento) {
         return;
     }
     var clave2 = document.getElementById('repeat-password').value;
-    if(clave === clave2){
+    if(clave !== clave2){
         alert('Las contraseñas no coinciden');
         return;
     }
