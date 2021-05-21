@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String ROLE_ADMIN = "ADMIN";
 	public static final String ROLE_CLIENT = "CLIENT";
 
-	private static final String[] PUBLIC_MATCHERS = { "/css/**", "/js/**", "/webjars/**", "/static/**", "/login" };
+	private static final String[] PUBLIC_MATCHERS = { "/css/**", "/js/**", "/webjars/**", "/static/**", "/login", "/register" };
 	private static final String[] CLIENT_MATCHERS = { "**/user/**" };
 	private static final String[] ADMIN_MATCHERS = { "**/admin/**" };
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Iniciar Sesión</title>
+    <title>Registrar usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="../static/css/style.css" th:href="@{css/style.css}" rel="stylesheet" />
@@ -14,25 +14,29 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-4" id="form-login">
-                <form th:action="@{/login}" method="post" class="form-signin">
-                    <h3 class="form-signin-heading" th:text="Credenciales">Credenciales</h3>
+                <form th:action="@{/register}" method="post" class="form-signin" th:object="${users}">
+                    <h3 class="form-signin-heading" th:text="Register">Register</h3>
                     <br />
                     <input type="text" id="email" name="email" placeholder="Email" th:placeholder="Email"
+                        class="form-control" /><br />
+
+                    <input type="text" id="username" name="username" placeholder="Username" th:placeholder="Username"
                         class="form-control" /><br />
 
                     <input type="password" placeholder="Password" th:placeholder="Password" class="form-control"
                         id="password" name="password" /> <br />
 
-                    <div th:if="${param.error}">
-                        <p>Verifica las credenciales.</p>
+                    <!-- <input type="password" placeholder="Repeat Password" class="form-control" id="password"
+                        name="password" /> <br /> -->
+
+                    <div id="alert-div" th:if="${param.error}">
+                        <p>Password don't match.</p>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" id="loggin-button" name="Submit" value="Login"
-                        type="Submit" th:text="Login">Login</button>
+                    <button class="btn btn-lg btn-primary btn-block" id="register-button" name="Submit" value="Login"
+                        type="Submit" th:text="Register">Register</button>
                 </form>
-                <a href="/register">
-                    <button class="btn btn-lg btn-secondary btn-block" id="register-button" name="Register"
-                        value="Register" th:text="Register">Register</button>
-                </a>
+                <a href="/login">Estas registrado? Click aqui!</a>
+
             </div>
             <div class="col-sm-4">
             </div>
